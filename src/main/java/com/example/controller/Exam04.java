@@ -17,21 +17,23 @@ public class Exam04 {
 	public UserForm setUpForm() {
 		return new UserForm();
 	}
+
 	@RequestMapping("")
 	public String index() {
 		return "exam04";
 	}
-	
+
 	@RequestMapping("/result")
-	public String result(@Validated UserForm form,BindingResult result, String name,String age,String comment,Model model) {
-		if(result.hasErrors()) {
+	public String result(@Validated UserForm form, BindingResult result, String name, String age, String comment,
+			Model model) {
+		if (result.hasErrors()) {
 			return index();
 		}
-		User user=new User();
+		User user = new User();
 		user.setName(name);
 		user.setAge(age);
 		user.setComment(comment);
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		return "exam04-result";
 	}
 }
