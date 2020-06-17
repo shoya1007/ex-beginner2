@@ -27,21 +27,11 @@ public class MemberRepository {
 	};
 
 	public List<Member> findByName(String partOfName) {
-		//String str="%"+partOfName+"%";
 		String sql = "select id,name,age,dep_id from members where name like :partOfName order by id";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("partOfName","%"+partOfName+"%" );
+		SqlParameterSource param = new MapSqlParameterSource().addValue("partOfName", "%" + partOfName + "%");
 		List<Member> memberList = template.query(sql, param, MEMBER_ROW_MAPPER);
 		return memberList;
 
 	}
-
-	/*
-	 * public List<Member> find() { String sql =
-	 * "select id,name,age,dep_id from members where name like '%ロー%'";
-	 * SqlParameterSource param = new MapSqlParameterSource(); List<Member>
-	 * memberList = template.query(sql, MEMBER_ROW_MAPPER); return memberList; }
-	 */
-
-	
 
 }
